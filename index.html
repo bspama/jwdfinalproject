@@ -12,60 +12,68 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <title>Task Manager|Tasker</title>
   </head>
 
   <body>
     <header>
-      <h1>Tasker</h1>
+      <h1 class="text-center"><i class="bi bi-check2-square"></i> Tasker</h1>
     </header>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form class="row g-3">
+
+            <div class="col-md-6">
+              <label for="new-name" class="form-label">Task Name</label>
+              <input type="text" class="form-control" id="new-name" />
+            </div>
+      
+            <div class="col-3">
+              <label for="new-assign" class="form-label">Assigned to</label>
+              <input type="text" class="form-control" id="new-assign" />
+            </div>
+      
+            <div class="col-9">
+              <label for="new-descript" class="form-label">Description</label>
+              <textarea class="form-control" id="new-descript" rows="5" cols="30">
+              </textarea>
+            </div>
+      
+            <div class="col-3">
+              <label for="new-status" class="form-label">Status</label>
+              <select id="new-status" class="form-select">
+                <option selected>Choose...</option>
+                <option>To Do</option>
+                <option>In Progress</option>
+                <option>Review</option>
+                <option>Done</option>
+              </select>
+            </div>
+      
+            <div>
+              <div class="col-3">
+              <label for="new-duedate" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="new-duedate" />
+            </div>
+            <br>
+            <div class="col-3">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            <br>
+            <div class="col-3">
+              <button type="submit" class="btn btn-primary">Clear</button>
+            </div>
+      
+          </form>
+
+        </div>
+      </div>
+
+    </div>
     
-
-    <form class="row g-3">
-
-      <div class="col-md-6">
-        <label for="new-name" class="form-label">Task Name</label>
-        <input type="text" class="form-control" id="new-name" />
-      </div>
-
-      <div class="col-3">
-        <label for="new-assign" class="form-label">Assigned to</label>
-        <input type="text" class="form-control" id="new-assign" />
-      </div>
-
-      <div class="col-9">
-        <label for="new-descript" class="form-label">Description</label>
-        <textarea class="form-control" id="new-descript" rows="5" cols="30">
-        </textarea>
-      </div>
-
-      <div class="col-3">
-        <label for="new-status" class="form-label">Status</label>
-        <select id="new-status" class="form-select">
-          <option selected>Choose...</option>
-          <option>To Do</option>
-          <option>In Progress</option>
-          <option>Review</option>
-          <option>Done</option>
-        </select>
-      </div>
-
-      <div>
-        <div class="col-3">
-        <label for="new-duedate" class="form-label">Due Date</label>
-        <input type="date" class="form-control" id="new-duedate" />
-      </div>
-      <br>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Add</button>
-      </div>
-      <br>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Clear</button>
-      </div>
-
-    </form>
     
     <!-- Optional JavaScript; choose one of the two! -->
 
