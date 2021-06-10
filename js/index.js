@@ -10,7 +10,6 @@ function validFormFieldInput(data) {
   const dueDateErr = document.querySelector("#dd-error-msg");
   const taskStatusErr = document.querySelector("#ts-error-msg");
 
-
   // console.log("name: " + newNameInput.value);
 
   // check if Task Name is more than 5 characters
@@ -69,3 +68,6 @@ if (newDueDate.value == "") {
 }
 
 addBtn.addEventListener("click", validFormFieldInput);
+
+const task1 = new taskManager();
+console.log(task1);
