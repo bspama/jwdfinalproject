@@ -7,9 +7,8 @@ class taskManager {
   addTask(name, description, assignedTo, dueDate, status) {
     // Within the addTask method, increment the this.currentId
 
-    // this.currentID++;
-
     // create a task using this funtion and push it to the this.tasks Array.
+
     // 1. create a task
     const newTask = {
       currentID: this.currentID++,
@@ -32,6 +31,6 @@ task1.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
 task1.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
 console.log(task1.tasks);
 
-const task2 = new taskManager(2);
-task2.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
-console.log(task2.tasks);
+// const task2 = new taskManager(2);
+// task2.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
+// console.log(task2.tasks);

@@ -75,6 +75,7 @@ function validFormFieldInput(data) {
     taskStatusErr.innerHTML = "All good ";
     taskStatusErr.style.color = "green";
   }
+
   event.preventDefault();
 }
 
