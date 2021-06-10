@@ -34,9 +34,7 @@
         <!-- Grid Row 1 Start -->
         <div class="row">
           <div class="col-5">
-            <label for="new-name" class="form-label" id="task-name"
-              >Task Name</label
-            >
+            <label for="new-name" class="form-label">Task Name</label>
             <span id="tn-error-msg"></span>
             <input
               type="text"
@@ -47,6 +45,7 @@
           </div>
           <div class="col-5">
             <label for="new-assign" class="form-label">Assigned to</label>
+            <span id="at-error-msg"></span>
             <input
               type="text"
               class="form-control"
@@ -60,6 +59,7 @@
         <div class="row">
           <div class="col-5">
             <label for="new-descript" class="form-label">Description</label>
+            <span id="nd-error-msg"></span>
             <textarea
               class="form-control"
               id="new-descript"
@@ -71,6 +71,7 @@
           </div>
           <div class="col-5">
             <label for="new-status" class="form-label">Status</label>
+            <span id="ts-error-msg"></span>
             <select id="new-status" name="new-status" class="form-select">
               <option selected>Choose...</option>
               <option>To Do</option>
@@ -86,6 +87,7 @@
           <div class="col">
             <div class="col-10">
               <label for="new-duedate" class="form-label">Due Date</label>
+              <span id="dd-error-msg"></span>
               <input
                 type="date"
                 class="form-control"
