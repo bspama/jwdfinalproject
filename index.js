@@ -1,33 +1,24 @@
-//adding the selector
-const newName = document.querySelector('#new-name');
-const newAssign = document.querySelector('#new-assign');
-const newDescript = document.querySelector('#new-descript');
-const newStatus = document.querySelector('#new-status');
-const newDueDate = document.querySelector('#new-duedate');
-const newDueDate = document.querySelector('#new-duedate');
-const addBtn = document.querySelector('#addBtn');
+function validFormFieldInput(data) {
+  const newNameInput = document.querySelector("#new-name");
+  const taskName = document.querySelector("#task-name");
+  const newAssignInput = document.querySelector("#new-assign");
+  const newDescriptInput = document.querySelector("#new-descript");
+  const newStatusInput = document.querySelector("#new-status");
+  const newDueDate = document.querySelector("#new-duedate");
+  const taskNameErr = document.querySelector("#tn-error-msg");
 
-//console.log("Task name:  " + newName.value);
+  // console.log("name: " + newNameInput.value);
 
-let validFormFieldInput = function (data) {
-    if (newName.value.length > 5) {
-        
-    }
+  // check if Task Name is more than 5 characters
 
-};
-
-function validFormFieldInput() {
-    if (newName.value == “” && newName.value.length < 8) {
-      errMsg.innerHTML = “Length should be more than 8";
-      document.querySelector(“#errMsg”).style.color = “#FF0000";
-      myName2.focus();
-    } else {
-      errMsg.innerHTML = “All good “;
-      document.querySelector(“#errMsg”).style.color = “#EEEEEE”;
-    }
+  if (newNameInput.value == "" || newNameInput.value.length < 5) {
+    taskNameErr.innerHTML = "Length should be more than 5";
+    taskNameErr.style.color = "#ff0000";
+    newNameInput.focus();
+  } else {
+    taskNameErr.innerHTML = "All good ";
+    taskNameErr.style.color = "green";
   }
+}
 
-addBtn.addEventListener('click',validFormFieldInput);
-
-
-
+addBtn.addEventListener("click", validFormFieldInput);

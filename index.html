@@ -34,8 +34,10 @@
         <!-- Grid Row 1 Start -->
         <div class="row">
           <div class="col-5">
-            <span id="tn-err-msg"></span>
-            <label for="new-name" class="form-label">Task Name</label>
+            <label for="new-name" class="form-label" id="task-name"
+              >Task Name</label
+            >
+            <span id="tn-error-msg"></span>
             <input
               type="text"
               class="form-control"
@@ -100,7 +102,9 @@
         <!-- Grid Row 4 Start -->
         <div class="row">
           <div class="col text-center">
-            <button type="submit" class="btn btn-primary" id="addBtn">Add</button>
+            <button type="submit" class="btn btn-primary" id="addBtn">
+              Add
+            </button>
             <button type="button" class="btn btn-primary">Clear</button>
           </div>
         </div>
