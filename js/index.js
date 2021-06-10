@@ -23,9 +23,9 @@ function validFormFieldInput(data) {
     taskNameErr.style.color = "green";
   }
 
-// check if Assigned to is more than 5 characters
+  // check if Assigned to is more than 5 characters
 
-if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
+  if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
     //newDescriptInput.focus();
@@ -34,9 +34,9 @@ if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
     assignedErr.style.color = "green";
   }
 
-// check if Description is more than 5 characters
+  // check if Description is more than 5 characters
 
-if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
+  if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
     newDescriptErr.innerHTML = "Length should be more than 5";
     newDescriptErr.style.color = "#ff0000";
     //newDescriptInput.focus();
@@ -45,9 +45,9 @@ if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
     newDescriptErr.style.color = "green";
   }
 
-// check that Due Date is not empty
+  // check that Due Date is not empty
 
-if (newDueDate.value == "") {
+  if (newDueDate.value == "") {
     dueDateErr.innerHTML = "Please enter a Due Date";
     dueDateErr.style.color = "#ff0000";
   } else {
@@ -64,10 +64,7 @@ if (newDueDate.value == "") {
     taskStatusErr.innerHTML = "All good ";
     taskStatusErr.style.color = "green";
   }
-  event.preventDefault(); 
+  event.preventDefault();
 }
 
 addBtn.addEventListener("click", validFormFieldInput);
-
-const task1 = new taskManager();
-console.log(task1);
