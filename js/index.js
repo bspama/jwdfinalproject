@@ -1,3 +1,14 @@
+// Initialize a new TaskManager with currentId set to 0
+const TaskManager = new taskManager(0);
+// This is where we can test our code
+
+// TaskManager.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
+// console.log(TaskManager.tasks);
+
+// const task2 = new taskManager(1);
+// task2.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
+// console.log(task2.tasks);
+
 function validFormFieldInput(data) {
   const newNameInput = document.querySelector("#new-name");
   const newAssignInput = document.querySelector("#new-assign");
