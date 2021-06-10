@@ -78,4 +78,15 @@ function validFormFieldInput(data) {
   event.preventDefault();
 }
 
+//1. When we submit, we need check all the inputs are valid first
 addBtn.addEventListener("click", validFormFieldInput);
+
+//2. we need to call the addTask method from the Task Manager Task and 
+
+//3. Pass the form's input as parameter
+
+//4. Clear values for next submission
+
+
+
+
