@@ -23,7 +23,6 @@ function validFormFieldInput(data) {
     taskNameErr.innerHTML = "All good ";
     taskNameErr.style.color = "green";
   }
-
 // check if Assigned to is more than 5 characters
 
 if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
