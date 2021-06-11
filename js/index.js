@@ -1,5 +1,5 @@
 // Initialize a new TaskManager with currentId set to 0
-const TaskManager = new taskManager(0);
+const taskManager = new TaskManager(0);
 
 //create task
 // This is where we can test our code
@@ -18,9 +18,10 @@ const taskHtml = createTaskHtml(
 );
 // console.log(taskHtml);
 
-let validForm = true;
+function validFormFieldInput(event) {
+  event.preventDefault();
+  let validForm = true;
 
-function validFormFieldInput(data) {
   const newNameInput = document.querySelector("#new-name");
   const newAssignInput = document.querySelector("#new-assign");
   const newDescriptInput = document.querySelector("#new-descript");
@@ -40,6 +41,7 @@ function validFormFieldInput(data) {
     taskNameErr.innerHTML = "Length should be more than 5";
     taskNameErr.style.color = "#ff0000";
     validForm = false;
+
     //newNameInput.focus();
   } else {
     taskNameErr.innerHTML = "All good ";
@@ -52,6 +54,7 @@ function validFormFieldInput(data) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
     validForm = false;
+
     //newDescriptInput.focus();
   } else {
     assignedErr.innerHTML = "All good ";
@@ -92,14 +95,8 @@ function validFormFieldInput(data) {
     taskStatusErr.style.color = "green";
   }
 
-  // if it is valid then add task, rest and render.
-
-  // if it is not valid, then clicking the button should make the errors, allow us to type correct details, then validate again.
-
-  // if not valid:
-
   if (validForm) {
-    TaskManager.addTask(
+    taskManager.addTask(
       newNameInput.value,
       newDescriptInput.value,
       newAssignInput.value,
@@ -114,19 +111,8 @@ function validFormFieldInput(data) {
     dueDateErr.innerHTML = "";
     taskStatusErr.innerHTML = "";
 
-    TaskManager.render();
-    // console.log(TaskManager.tasks);
-  } else {
+    taskManager.render();
   }
-
-  event.preventDefault();
 }
+
 addBtn.addEventListener("click", validFormFieldInput);
-
-//1. When we submit, we need check all the inputs are valid first
-
-//2. we need to call the addTask method from the Task Manager Task and
-
-//3. Pass the form's input as parameter
-
-//4. Clear values for next submission
