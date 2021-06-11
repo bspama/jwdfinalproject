@@ -1,5 +1,5 @@
-function createTaskHtml(name, assignedTo, status, dueDate, description){
-const html = `
+function createTaskHtml(name, assignedTo, status, dueDate, description) {
+  const html = `
             <li class="list-group-item">
               <!-- add a card into the first list group item. -->
               <div class="card">
@@ -45,13 +45,11 @@ const html = `
               </div>
             </li>
 
-`  
-return html;
-
+`;
+  return html;
 }
 
-
-class taskManager {
+class TaskManager {
   constructor(currentID = 0) {
     this.tasks = [];
     this.currentID = currentID;
@@ -68,33 +66,42 @@ class taskManager {
       name: name,
       "assigned to": assignedTo,
       status: status,
-      "due date": dueDate,
+      dueDate: dueDate,
       description: description,
     };
 
     // 2. push the task to the this.tasks array with the correct properties of the task.
 
-    this.tasks.push({ newTask });     
+    this.tasks.push(newTask);
   }
 
-  render(){      
-  let tasksHtmlList =[]
+  // Create render method to show tasks list
 
-  this.tasks.forEach(task =>{
-  //  const currentTask = task;
-    const date = new Date(task["due date"]);
-    const formattedDate = date.toDateString();
-    const taskHtml = createTaskHtml(
-      task.name, 
-      task["assigned to"], 
-      task.status, 
-      formattedDate, 
-      task.description)
-      
-  tasksHtmlList.push(taskHtml);    
-  });
+  render() {
+    // empty tasks html list array
+    let tasksHtmlList = [];
+
+    // for each task, format the date and create the task html
+    this.tasks.forEach((task) => {
+      //  const currentTask = task;
+      const date = new Date(task.dueDate);
+      const formattedDate = date.toDateString();
+      const taskHtml = createTaskHtml(
+        task.name,
+        task["assigned to"],
+        task.status,
+        formattedDate,
+        task.description
+      );
+      // push the new task html to the empty task html list array
+      tasksHtmlList.push(taskHtml);
+    });
+
+    // join the html list array into one string, where each element from the array starts on a new line
+    const tasksHtml = tasksHtmlList.join("\n");
+
+    // target the tasks list ul element from index.html and replace its inner html with the string we just created in tasksHtml.
+    const taskList = document.querySelector("#tasks-list");
+    taskList.innerHTML = tasksHtml;
+  }
 }
-
-
-}
-

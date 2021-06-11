@@ -9,8 +9,14 @@ const TaskManager = new taskManager(0);
 
 //1. Create a `taskHtml` variable with the result of calling the `createTaskHtml` function, making sure to pass a value for each parameter.
 
-const taskHtml = createTaskHtml("Buy Groceries", "Shalveena", "To do", "11-06-2021", "Testing");
-console.log(taskHtml);
+const taskHtml = createTaskHtml(
+  "Buy Groceries",
+  "Shalveena",
+  "To do",
+  "11-06-2021",
+  "Testing"
+);
+// console.log(taskHtml);
 
 let validForm = true;
 
@@ -86,23 +92,36 @@ function validFormFieldInput(data) {
     taskStatusErr.style.color = "green";
   }
 
-  if (validForm){
-    TaskManager.addTask(newNameInput.value, newDescriptInput.value, newAssignInput.value, newDueDate.value, newStatusInput.value);
-    console.log(TaskManager.tasks);
-    document.getElementById("taskForm").reset();
+  // if it is valid then add task, rest and render.
 
+  // if it is not valid, then clicking the button should make the errors, allow us to type correct details, then validate again.
+
+  // if not valid:
+
+  if (validForm) {
+    TaskManager.addTask(
+      newNameInput.value,
+      newDescriptInput.value,
+      newAssignInput.value,
+      newDueDate.value,
+      newStatusInput.value
+    );
+
+    document.getElementById("taskForm").reset();
+    taskNameErr.innerHTML = "";
+    assignedErr.innerHTML = "";
+    newDescriptErr.innerHTML = "";
+    dueDateErr.innerHTML = "";
+    taskStatusErr.innerHTML = "";
+
+    TaskManager.render();
+    // console.log(TaskManager.tasks);
+  } else {
   }
 
   event.preventDefault();
 }
 addBtn.addEventListener("click", validFormFieldInput);
-
-
-
- 
-
-
-
 
 //1. When we submit, we need check all the inputs are valid first
 
