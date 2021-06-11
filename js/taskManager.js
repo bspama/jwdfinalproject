@@ -25,12 +25,3 @@ class taskManager {
   }
 }
 
-// Test code:
-const task1 = new taskManager(1);
-task1.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
-task1.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
-console.log(task1.tasks);
-
-// const task2 = new taskManager(2);
-// task2.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
-// console.log(task2.tasks);
