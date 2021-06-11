@@ -1,4 +1,4 @@
-function createTaskHtml(name, assignedTo, status, dueDate, description) {
+const createTaskHtml = (name, assignedTo, status, dueDate, description) => {
   const html = `
             <li class="list-group-item">
               <!-- add a card into the first list group item. -->
@@ -47,7 +47,7 @@ function createTaskHtml(name, assignedTo, status, dueDate, description) {
 
 `;
   return html;
-}
+};
 
 class TaskManager {
   constructor(currentID = 0) {

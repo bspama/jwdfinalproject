@@ -22,7 +22,7 @@ const taskManager = new TaskManager(0);
 // const addBtn = document.querySelector("#addBtn");
 const form = document.querySelector("#taskForm");
 
-function submitForm(event) {
+const submitForm = (event) => {
   event.preventDefault();
   let validForm = true;
 
@@ -118,6 +118,6 @@ function submitForm(event) {
 
     taskManager.render();
   }
-}
+};
 
 form.addEventListener("submit", submitForm);
