@@ -57,7 +57,7 @@ class taskManager {
     this.currentID = currentID;
   }
 
-  addTask(name, description, assignedTo, dueDate, status) {
+  addTask(name, assignedTo, status, dueDate, description) {
     // Within the addTask method, increment the this.currentId
 
     // create a task using this funtion and push it to the this.tasks Array.
@@ -66,15 +66,35 @@ class taskManager {
     const newTask = {
       currentID: this.currentID++,
       name: name,
-      description: description,
       "assigned to": assignedTo,
-      "due date": dueDate,
       status: status,
+      "due date": dueDate,
+      description: description,
     };
 
     // 2. push the task to the this.tasks array with the correct properties of the task.
 
-    this.tasks.push({ newTask });
+    this.tasks.push({ newTask });     
   }
+
+  render(){      
+  let tasksHtmlList =[]
+
+  this.tasks.forEach(task =>{
+  //  const currentTask = task;
+    const date = new Date(task["due date"]);
+    const formattedDate = date.toDateString();
+    const taskHtml = createTaskHtml(
+      task.name, 
+      task["assigned to"], 
+      task.status, 
+      formattedDate, 
+      task.description)
+      
+  tasksHtmlList.push(taskHtml);    
+  });
+}
+
+
 }
 
