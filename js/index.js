@@ -9,14 +9,17 @@ const taskManager = new TaskManager(0);
 
 //1. Create a `taskHtml` variable with the result of calling the `createTaskHtml` function, making sure to pass a value for each parameter.
 
-const taskHtml = createTaskHtml(
-  "Buy Groceries",
-  "Shalveena",
-  "To do",
-  "11-06-2021",
-  "Testing"
-);
-// console.log(taskHtml);
+// const taskHtml = createTaskHtml(
+//   "Buy Groceries",
+//   "Shalveena",
+//   "To do",
+//   "11-06-2021",
+//   "Testing"
+// );
+// // console.log(taskHtml);
+
+// select "Add" button element from index.html
+const addBtn = document.querySelector("#addBtn");
 
 function submitForm(event) {
   event.preventDefault();
