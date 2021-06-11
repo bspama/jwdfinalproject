@@ -1,3 +1,56 @@
+function createTaskHtml(name, assignedTo, status, dueDate, description){
+const html = `
+            <li class="list-group-item">
+              <!-- add a card into the first list group item. -->
+              <div class="card">
+                <div class="card-body">
+                  <!-- This is the first row of the card -->
+                  <div class="row">
+                    <h5 class="card-title">${name}</h5>
+                  </div>
+                  <!-- Second row of the card -->
+                  <div class="row my-sm-2">
+                    <!-- has 3 columns -->
+                    <div class="col-4">
+                      <p class="card-text">Assigned to: ${assignedTo}</p>
+                    </div>
+                    <div class="col-4">
+                      <p class="card-text">Status: ${status}</p>
+                    </div>
+                    <div class="col-4">
+                      <p class="card-text">Due date: ${dueDate}</p>
+                    </div>
+                  </div>
+                  <!-- Third row of the card -->
+                  <div class="row my-sm-2">
+                    <p class="card-text">
+                    ${description}
+                    </p>
+                  </div>
+                  <!-- Fourth row of the card -->
+                  <div class="row">
+                    <div class="col">
+                      <button type="button" class="btn btn-secondary">
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-secondary">
+                        Mark as Complete
+                      </button>
+                      <button type="button" class="btn btn-secondary">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+`  
+return html;
+
+}
+
+
 class taskManager {
   constructor(currentID = 0) {
     this.tasks = [];

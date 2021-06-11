@@ -1,9 +1,16 @@
 // Initialize a new TaskManager with currentId set to 0
 const TaskManager = new taskManager(0);
+
+//create task
 // This is where we can test our code
 
 // TaskManager.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
 // console.log(TaskManager.tasks);
+
+//1. Create a `taskHtml` variable with the result of calling the `createTaskHtml` function, making sure to pass a value for each parameter.
+
+const taskHtml = createTaskHtml("Buy Groceries", "Shalveena", "To do", "11-06-2021", "Testing");
+console.log(taskHtml);
 
 let validForm = true;
 
