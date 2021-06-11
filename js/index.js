@@ -1,3 +1,12 @@
+// Initialize a new TaskManager with currentId set to 0
+const TaskManager = new taskManager(0);
+// This is where we can test our code
+
+// TaskManager.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
+// console.log(TaskManager.tasks);
+
+let validForm = true;
+
 function validFormFieldInput(data) {
   const newNameInput = document.querySelector("#new-name");
   const newAssignInput = document.querySelector("#new-assign");
@@ -17,39 +26,43 @@ function validFormFieldInput(data) {
   if (newNameInput.value == "" || newNameInput.value.length < 5) {
     taskNameErr.innerHTML = "Length should be more than 5";
     taskNameErr.style.color = "#ff0000";
+    validForm = false;
     //newNameInput.focus();
   } else {
     taskNameErr.innerHTML = "All good ";
     taskNameErr.style.color = "green";
   }
 
-// check if Assigned to is more than 5 characters
+  // check if Assigned to is more than 5 characters
 
-if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
+  if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
+    validForm = false;
     //newDescriptInput.focus();
   } else {
     assignedErr.innerHTML = "All good ";
     assignedErr.style.color = "green";
   }
 
-// check if Description is more than 5 characters
+  // check if Description is more than 5 characters
 
-if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
+  if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
     newDescriptErr.innerHTML = "Length should be more than 5";
     newDescriptErr.style.color = "#ff0000";
+    validForm = false;
     //newDescriptInput.focus();
   } else {
     newDescriptErr.innerHTML = "All good ";
     newDescriptErr.style.color = "green";
   }
 
-// check that Due Date is not empty
+  // check that Due Date is not empty
 
-if (newDueDate.value == "") {
+  if (newDueDate.value == "") {
     dueDateErr.innerHTML = "Please enter a Due Date";
     dueDateErr.style.color = "#ff0000";
+    validForm = false;
   } else {
     dueDateErr.innerHTML = "All good ";
     dueDateErr.style.color = "green";
@@ -60,14 +73,34 @@ if (newDueDate.value == "") {
   if (newStatusInput.value == "Choose...") {
     taskStatusErr.innerHTML = "Please enter a Task Status";
     taskStatusErr.style.color = "#ff0000";
+    validForm = false;
   } else {
     taskStatusErr.innerHTML = "All good ";
     taskStatusErr.style.color = "green";
   }
-  event.preventDefault(); 
-}
 
+  if (validForm){
+    TaskManager.addTask(newNameInput.value, newDescriptInput.value, newAssignInput.value, newDueDate.value, newStatusInput.value);
+    console.log(TaskManager.tasks);
+    document.getElementById("taskForm").reset();
+
+  }
+
+  event.preventDefault();
+}
 addBtn.addEventListener("click", validFormFieldInput);
 
-const task1 = new taskManager();
-console.log(task1);
+
+
+ 
+
+
+
+
+//1. When we submit, we need check all the inputs are valid first
+
+//2. we need to call the addTask method from the Task Manager Task and
+
+//3. Pass the form's input as parameter
+
+//4. Clear values for next submission
