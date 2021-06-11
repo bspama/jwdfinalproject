@@ -18,7 +18,7 @@ const taskHtml = createTaskHtml(
 );
 // console.log(taskHtml);
 
-function validFormFieldInput(event) {
+function submitForm(event) {
   event.preventDefault();
   let validForm = true;
 
@@ -115,4 +115,4 @@ function validFormFieldInput(event) {
   }
 }
 
-addBtn.addEventListener("click", validFormFieldInput);
+addBtn.addEventListener("click", submitForm);
