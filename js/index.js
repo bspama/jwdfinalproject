@@ -1,13 +1,31 @@
 // Initialize a new TaskManager with currentId set to 0
-const TaskManager = new taskManager(0);
+const taskManager = new TaskManager(0);
+
+//create task
 // This is where we can test our code
 
 // TaskManager.addTask("Boots", "Is Cool!", "Shalveena", "21/05/2021", "Done");
 // console.log(TaskManager.tasks);
 
-let validForm = true;
+//1. Create a `taskHtml` variable with the result of calling the `createTaskHtml` function, making sure to pass a value for each parameter.
 
-function validFormFieldInput(data) {
+// const taskHtml = createTaskHtml(
+//   "Buy Groceries",
+//   "Shalveena",
+//   "To do",
+//   "11-06-2021",
+//   "Testing"
+// );
+// // console.log(taskHtml);
+
+// select "Add" button element from index.html
+// const addBtn = document.querySelector("#addBtn");
+const form = document.querySelector("#taskForm");
+
+const submitForm = (event) => {
+  event.preventDefault();
+  let validForm = true;
+
   const newNameInput = document.querySelector("#new-name");
   const newAssignInput = document.querySelector("#new-assign");
   const newDescriptInput = document.querySelector("#new-descript");
@@ -27,6 +45,7 @@ function validFormFieldInput(data) {
     taskNameErr.innerHTML = "Length should be more than 5";
     taskNameErr.style.color = "#ff0000";
     validForm = false;
+
     //newNameInput.focus();
   } else {
     taskNameErr.innerHTML = "All good ";
@@ -39,6 +58,7 @@ function validFormFieldInput(data) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
     validForm = false;
+
     //newDescriptInput.focus();
   } else {
     assignedErr.innerHTML = "All good ";
@@ -79,28 +99,25 @@ function validFormFieldInput(data) {
     taskStatusErr.style.color = "green";
   }
 
-  if (validForm){
-    TaskManager.addTask(newNameInput.value, newDescriptInput.value, newAssignInput.value, newDueDate.value, newStatusInput.value);
-    console.log(TaskManager.tasks);
-    document.getElementById("taskForm").reset();
+  // if the information is valid, run the addTask function and the render function.
+  if (validForm) {
+    taskManager.addTask(
+      newNameInput.value,
+      newDescriptInput.value,
+      newAssignInput.value,
+      newDueDate.value,
+      newStatusInput.value
+    );
 
+    form.reset();
+    taskNameErr.innerHTML = "";
+    assignedErr.innerHTML = "";
+    newDescriptErr.innerHTML = "";
+    dueDateErr.innerHTML = "";
+    taskStatusErr.innerHTML = "";
+
+    taskManager.render();
   }
+};
 
-  event.preventDefault();
-}
-addBtn.addEventListener("click", validFormFieldInput);
-
-
-
- 
-
-
-
-
-//1. When we submit, we need check all the inputs are valid first
-
-//2. we need to call the addTask method from the Task Manager Task and
-
-//3. Pass the form's input as parameter
-
-//4. Clear values for next submission
+form.addEventListener("submit", submitForm);
