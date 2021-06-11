@@ -19,7 +19,8 @@ const taskManager = new TaskManager(0);
 // // console.log(taskHtml);
 
 // select "Add" button element from index.html
-const addBtn = document.querySelector("#addBtn");
+// const addBtn = document.querySelector("#addBtn");
+const form = document.querySelector("#taskForm");
 
 function submitForm(event) {
   event.preventDefault();
@@ -98,6 +99,7 @@ function submitForm(event) {
     taskStatusErr.style.color = "green";
   }
 
+  // if the information is valid, run the addTask function and the render function.
   if (validForm) {
     taskManager.addTask(
       newNameInput.value,
@@ -107,7 +109,7 @@ function submitForm(event) {
       newStatusInput.value
     );
 
-    document.getElementById("taskForm").reset();
+    form.reset();
     taskNameErr.innerHTML = "";
     assignedErr.innerHTML = "";
     newDescriptErr.innerHTML = "";
@@ -118,4 +120,4 @@ function submitForm(event) {
   }
 }
 
-addBtn.addEventListener("click", submitForm);
+form.addEventListener("submit", submitForm);
