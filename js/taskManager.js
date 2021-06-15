@@ -1,6 +1,6 @@
-const createTaskHtml = (name, assignedTo, status, dueDate, description) => {
+const createTaskHtml = (currentID, name, assignedTo, status, dueDate, description) => {
   const html = `
-            <li class="list-group-item">
+            <li class="list-group-item" data-task-id="${currentID}">
               <!-- add a card into the first list group item. -->
               <div class="card">
                 <div class="card-body">
@@ -33,7 +33,7 @@ const createTaskHtml = (name, assignedTo, status, dueDate, description) => {
                       <button type="button" class="btn btn-secondary">
                         Edit
                       </button>
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary done-button">
                         Mark as Complete
                       </button>
                       <button type="button" class="btn btn-secondary">
@@ -87,6 +87,7 @@ class TaskManager {
       const date = new Date(task.dueDate);
       const formattedDate = date.toDateString();
       const taskHtml = createTaskHtml(
+        task.currentID,
         task.name,
         task["assigned to"],
         task.status,
