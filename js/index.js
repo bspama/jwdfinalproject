@@ -128,7 +128,14 @@ taskList.addEventListener("click", (event) => {
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
     // console.log(parentTask);
+
+    const taskID = parseInt(parentTask.dataset.taskId);
+    const task = taskManager.getTaskById(taskID);
+    task.status = "Done";
+    taskManager.render();
   }
 });
+
+
 
 // console.log(taskManager.tasks);
