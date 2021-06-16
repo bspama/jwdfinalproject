@@ -1,8 +1,15 @@
-const createTaskHtml = (currentID, name, assignedTo, status, dueDate, description) => {
+const createTaskHtml = (
+  currentID,
+  name,
+  assignedTo,
+  status,
+  dueDate,
+  description
+) => {
   const html = `
-            <li class="list-group-item" data-task-id="${currentID}">
+            <li class="list-group-item" >
               <!-- add a card into the first list group item. -->
-              <div class="card">
+              <div class="card" data-task-id="${currentID}">
                 <div class="card-body">
                   <!-- This is the first row of the card -->
                   <div class="row">
