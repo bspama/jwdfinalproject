@@ -103,10 +103,10 @@ const submitForm = (event) => {
   if (validForm) {
     taskManager.addTask(
       newNameInput.value,
-      newDescriptInput.value,
       newAssignInput.value,
+      newStatusInput.value,
       newDueDate.value,
-      newStatusInput.value
+      newDescriptInput.value
     );
 
     form.reset();
@@ -131,6 +131,4 @@ taskList.addEventListener("click", (event) => {
   }
 });
 
-// console.log(taskManager.getTaskById(0));
-
-console.log(taskManager.tasks);
+// console.log(taskManager.tasks);
