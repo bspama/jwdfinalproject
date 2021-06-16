@@ -34,7 +34,7 @@ const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
                         Edit
                       </button>
                       <button type="button" class="btn btn-secondary done-button">
-                        Mark as Complete
+                        Mark as Done
                       </button>
                       <button type="button" class="btn btn-secondary">
                         Delete
@@ -108,8 +108,9 @@ class TaskManager {
   }
 
   getTaskById(taskID) {
+    //create a foundTask variable to store the found task
     let foundTask;
-
+    //Loops through each tasks in the tasks array and then when a match is found, saves it into the foundTask variable
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
       if (task.currentID === taskID) {

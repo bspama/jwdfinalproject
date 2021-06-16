@@ -22,6 +22,10 @@ const taskManager = new TaskManager(0);
 // const addBtn = document.querySelector("#addBtn");
 const form = document.querySelector("#taskForm");
 
+//Grey out past Due Dates
+const today = new Date().toISOString().split('T')[0];
+document.getElementsByClassName("dueDate")[0].setAttribute('min', today);
+
 const submitForm = (event) => {
   event.preventDefault();
   let validForm = true;
@@ -41,7 +45,7 @@ const submitForm = (event) => {
 
   // check if Task Name is more than 5 characters
 
-  if (newNameInput.value == "" || newNameInput.value.length < 5) {
+  if (newNameInput.value.trim() == "" || newNameInput.value.length < 5) {
     taskNameErr.innerHTML = "Length should be more than 5";
     taskNameErr.style.color = "#ff0000";
     validForm = false;
@@ -54,7 +58,7 @@ const submitForm = (event) => {
 
   // check if Assigned to is more than 5 characters
 
-  if (newAssignInput.value == "" || newAssignInput.value.length < 5) {
+  if (newAssignInput.value.trim() == "" || newAssignInput.value.length < 5) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
     validForm = false;
@@ -67,7 +71,7 @@ const submitForm = (event) => {
 
   // check if Description is more than 5 characters
 
-  if (newDescriptInput.value == "" || newDescriptInput.value.length < 5) {
+  if (newDescriptInput.value.trim() == "" || newDescriptInput.value.length < 5) {
     newDescriptErr.innerHTML = "Length should be more than 5";
     newDescriptErr.style.color = "#ff0000";
     validForm = false;
@@ -118,23 +122,40 @@ const submitForm = (event) => {
 
     taskManager.render();
   }
+
+//Clear all the fields and errors when Reset Button is clicked
+  const reset = document.querySelector("#resetBtn");
+  reset.addEventListener("click",() => {
+      taskNameErr.innerHTML = "";
+      assignedErr.innerHTML = "";
+      newDescriptErr.innerHTML = "";
+      dueDateErr.innerHTML = "";
+      taskStatusErr.innerHTML = "";
+  })
+
 };
 
+//Event Listener for Submit Event (ie Click Add Button) for the Form
 form.addEventListener("submit", submitForm);
 
 const taskList = document.querySelector("#tasks-list");
+
+//Event Listener to check when Mask as Done Button is clicked
 taskList.addEventListener("click", (event) => {
-  if (event.target.classList.contains("done-button")) {
+  //Checks whether the target has class called done-button and if it does saves it into the parentTask
+  if (event.target.classList.contains("done-button")) {  
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
     // console.log(parentTask);
-
+  //Get the taskID of the parentTask and converts into integer
     const taskID = parseInt(parentTask.dataset.taskId);
+  //Called the getTaskbyID method and saves it into task variable and changes the status to Done and render the task. 
     const task = taskManager.getTaskById(taskID);
     task.status = "Done";
     taskManager.render();
   }
 });
+
 
 
 
