@@ -73,6 +73,7 @@ class TaskManager {
     // 2. push the task to the this.tasks array with the correct properties of the task.
 
     this.tasks.push(newTask);
+    // console.log(this.tasks);
   }
 
   // Create render method to show tasks list
@@ -109,22 +110,22 @@ class TaskManager {
   getTaskById(taskID) {
     let foundTask;
 
-    // for (let i = 0; i < this.tasks.length; i++) {
-    //   const task = this.tasks[i];
-    //   if (task.currentID === taskID) {
-    //     foundTask = task;
-    //   }
-    // }
-
-    // return foundTask;
-
-    this.tasks.forEach((currentTask) => {
-      const task = currentTask;
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
       if (task.currentID === taskID) {
         foundTask = task;
       }
-    });
+    }
 
     return foundTask;
+
+    // this.tasks.forEach((currentTask) => {
+    //   const task = currentTask;
+    //   if (task.currentID === taskID) {
+    //     foundTask = task;
+    //   }
+    // });
+
+    // return foundTask;
   }
 }
