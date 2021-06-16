@@ -120,13 +120,17 @@ const submitForm = (event) => {
   }
 };
 
-
 form.addEventListener("submit", submitForm);
+
 const taskList = document.querySelector("#tasks-list");
 taskList.addEventListener("click", (event) => {
-  if (event.target.classList.contains("done-button")){
+  if (event.target.classList.contains("done-button")) {
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
+    // console.log(parentTask);
   }
-  
-} );
+});
+
+// console.log(taskManager.getTaskById(0));
+
+console.log(taskManager.tasks);
