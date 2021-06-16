@@ -1,15 +1,8 @@
-const createTaskHtml = (
-  currentID,
-  name,
-  assignedTo,
-  status,
-  dueDate,
-  description
-) => {
+const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
   const html = `
             <li class="list-group-item" >
               <!-- add a card into the first list group item. -->
-              <div class="card" data-task-id="${currentID}">
+              <div class="card" data-task-id="${id}">
                 <div class="card-body">
                   <!-- This is the first row of the card -->
                   <div class="row">
@@ -111,5 +104,27 @@ class TaskManager {
     // target the tasks list ul element from index.html and replace its inner html with the string we just created in tasksHtml.
     const taskList = document.querySelector("#tasks-list");
     taskList.innerHTML = tasksHtml;
+  }
+
+  getTaskById(taskID) {
+    let foundTask;
+
+    // for (let i = 0; i < this.tasks.length; i++) {
+    //   const task = this.tasks[i];
+    //   if (task.currentID === taskID) {
+    //     foundTask = task;
+    //   }
+    // }
+
+    // return foundTask;
+
+    this.tasks.forEach((currentTask) => {
+      const task = currentTask;
+      if (task.currentID === taskID) {
+        foundTask = task;
+      }
+    });
+
+    return foundTask;
   }
 }
