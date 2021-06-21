@@ -1,8 +1,8 @@
-const createTaskHtml = (name, assignedTo, status, dueDate, description) => {
+const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
   const html = `
-            <li class="list-group-item">
+            <li class="list-group-item" >
               <!-- add a card into the first list group item. -->
-              <div class="card">
+              <div class="card" data-task-id="${id}">
                 <div class="card-body">
                   <!-- This is the first row of the card -->
                   <div class="row">
@@ -33,8 +33,8 @@ const createTaskHtml = (name, assignedTo, status, dueDate, description) => {
                       <button type="button" class="btn btn-secondary">
                         Edit
                       </button>
-                      <button type="button" class="btn btn-secondary">
-                        Mark as Complete
+                      <button type="button" class="btn btn-secondary done-button">
+                        Mark as Done
                       </button>
                       <button type="button" class="btn btn-secondary">
                         Delete
@@ -73,6 +73,7 @@ class TaskManager {
     // 2. push the task to the this.tasks array with the correct properties of the task.
 
     this.tasks.push(newTask);
+    // console.log(this.tasks);
   }
 
   // Create render method to show tasks list
@@ -87,6 +88,7 @@ class TaskManager {
       const date = new Date(task.dueDate);
       const formattedDate = date.toDateString();
       const taskHtml = createTaskHtml(
+        task.currentID,
         task.name,
         task["assigned to"],
         task.status,
@@ -103,5 +105,28 @@ class TaskManager {
     // target the tasks list ul element from index.html and replace its inner html with the string we just created in tasksHtml.
     const taskList = document.querySelector("#tasks-list");
     taskList.innerHTML = tasksHtml;
+  }
+
+  getTaskById(taskID) {
+    //create a foundTask variable to store the found task
+    let foundTask;
+    //Loops through each tasks in the tasks array and then when a match is found, saves it into the foundTask variable
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      if (task.currentID === taskID) {
+        foundTask = task;
+      }
+    }
+
+    return foundTask;
+
+    // this.tasks.forEach((currentTask) => {
+    //   const task = currentTask;
+    //   if (task.currentID === taskID) {
+    //     foundTask = task;
+    //   }
+    // });
+
+    // return foundTask;
   }
 }
