@@ -36,7 +36,7 @@ const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
                       <button type="button" class="btn btn-secondary done-button">
                         Mark as Done
                       </button>
-                      <button type="button" class="btn btn-secondary">
+                      <button type="button" class="btn btn-secondary delete-button">
                         Delete
                       </button>
                     </div>
@@ -156,5 +156,23 @@ class TaskManager {
       // Convert the currentId to a number before storing it to the `TaskManager`'s `this.currentId`
       this.currentID = parseInt(currentID);
     }
+  }
+  //1. In `js/taskManager.js`, create a `deleteTask` method on the `TaskManager` class. It should take one parameter, `taskId`, the id of the task we want to be deleted.
+
+  deleteTask(taskID){
+    //2. In the `deleteTask` method, create a new variable `newTasks` and set it to an empty array.
+    const newTasks = [];
+    //3. Loop over the tasks, and for each iteration, (1) get current asks and store in a variable task, 
+    this.tasks.forEach((currentTask) => {
+      const task = currentTask
+      //(2)if task.id is not equal to taskID passed as a parameter, 
+      if (task.currentID != taskID) {
+      //(3)if the task.id is not equal to the taskID  push the task into the newTasks array.
+      newTasks.push(task);
+      }
+      //4. Set `this.tasks` to `newTasks`.
+      this.tasks = newTasks;  
+    });
+    
   }
 }
