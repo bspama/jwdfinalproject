@@ -129,4 +129,32 @@ class TaskManager {
 
     // return foundTask;
   }
+  // Create a save method to localStorage
+ 
+  save() { 
+    //create a JSON string of the tasks using `JSON.stringify()` and store it to a new variable, `tasksJson`
+    const tasksJson = JSON.stringify(this.tasks);
+    //Store the JSON string in `localStorage` under the key `tasks` using `localStorage.setItem()`.
+    localStorage.setItem("tasks",tasksJson);
+    //Convert this.currentID to string
+    const currentID = JSON.stringify(this.currentID);
+    // Store the `currentId` variable in `localStorage` under the key `currentId` using `localStorage.setItem()`.
+    localStorage.setItem("currentID",currentID);
+  }
+  load() {
+      //check if any tasks are saved in localStorage with `localStorage.getItem()`.
+    if(localStorage.getItem("tasks")){
+      //Get the JSON string of tasks from localStorage and save into tasksJson variable
+      const tasksJson = localStorage.getItem("tasks");
+      // Convert the `tasksJson` string to an array using `JSON.parse()` and store it in `this.tasks`
+      this.tasks = JSON.parse(tasksJson) 
+    }
+      //Next, check if the `currentId` is saved in localStorage with `localStorage.getItem()`.
+    if (localStorage.getItem("currentID")) {
+      //If the `currentId` is stored, get the `currentId` in localStorage using `localStorage.getItem()` and store it in a new variable, `currentId`.
+      const currentID = localStorage.getItem("currentID");
+      // Convert the currentId to a number before storing it to the `TaskManager`'s `this.currentId`
+      this.currentID = parseInt(currentID);
+    }
+  }
 }

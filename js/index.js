@@ -1,6 +1,10 @@
 // Initialize a new TaskManager with currentId set to 0
 const taskManager = new TaskManager(0);
 
+//In `js/index.js`, near the top of the file, after _instantiating_ `taskManager`, `load` the tasks with `taskManager.load()` and render them with `taskManager.render()`.
+taskManager.load();
+taskManager.render();
+
 //create task
 // This is where we can test our code
 
@@ -119,11 +123,11 @@ const submitForm = (event) => {
     newDescriptErr.innerHTML = "";
     dueDateErr.innerHTML = "";
     taskStatusErr.innerHTML = "";
-
+    taskManager.save();
     taskManager.render();
   }
 
-//Clear all the fields and errors when Reset Button is clicked
+  //Clear all the fields and errors when Reset Button is clicked
   const reset = document.querySelector("#resetBtn");
   reset.addEventListener("click",() => {
       taskNameErr.innerHTML = "";
@@ -146,14 +150,17 @@ taskList.addEventListener("click", (event) => {
   if (event.target.classList.contains("done-button")) {  
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
-    // console.log(parentTask);
-  //Get the taskID of the parentTask and converts into integer
+    //console.log(parentTask);
+    //Get the taskID of the parentTask and converts into integer
     const taskID = parseInt(parentTask.dataset.taskId);
-  //Called the getTaskbyID method and saves it into task variable and changes the status to Done and render the task. 
+    //Called the getTaskbyID method and saves it into task variable and changes the status to Done and render the task. 
     const task = taskManager.getTaskById(taskID);
     task.status = "Done";
+    //In `js/index.js`, after both adding a new task and updating a task's status to done, call `taskManager.save()` to save the tasks to `localSorage`.
+    taskManager.save() 
     taskManager.render();
   }
+
 });
 
 
