@@ -1,4 +1,14 @@
 const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
+
+  let doneButton;
+  if (status !== "Done") {
+    doneButton = `<button type="button" id="done-button" class="btn btn-secondary done-button">
+                        Mark as Done
+                      </button>`;
+  } else {
+    doneButton = '';
+  }
+
   const html = `
             <li class="list-group-item" >
               <!-- add a card into the first list group item. -->
@@ -33,9 +43,7 @@ const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
                       <button type="button" class="btn btn-secondary">
                         Edit
                       </button>
-                      <button type="button" class="btn btn-secondary done-button">
-                        Mark as Done
-                      </button>
+                      ${doneButton}
                       <button type="button" class="btn btn-secondary delete-button">
                         Delete
                       </button>
@@ -79,6 +87,9 @@ class TaskManager {
   // Create render method to show tasks list
 
   render() {
+
+    console.log('render');
+
     // empty tasks html list array
     let tasksHtmlList = [];
 
@@ -93,7 +104,7 @@ class TaskManager {
         task["assigned to"],
         task.status,
         formattedDate,
-        task.description
+        task.description,
       );
       // push the new task html to the empty task html list array
       tasksHtmlList.push(taskHtml);

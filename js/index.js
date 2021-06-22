@@ -157,7 +157,8 @@ taskList.addEventListener("click", (event) => {
     const task = taskManager.getTaskById(taskID);
     task.status = "Done";
     //In `js/index.js`, after both adding a new task and updating a task's status to done, call `taskManager.save()` to save the tasks to `localSorage`.
-    taskManager.save() 
+
+    taskManager.save(); 
     taskManager.render();
   }
   //At the bottom of the function, after our code that handles the "Done" button, create a new if statement to check if the event.target.classList contains the class 'delete-button'.
