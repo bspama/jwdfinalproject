@@ -157,10 +157,24 @@ taskList.addEventListener("click", (event) => {
     const task = taskManager.getTaskById(taskID);
     task.status = "Done";
     //In `js/index.js`, after both adding a new task and updating a task's status to done, call `taskManager.save()` to save the tasks to `localSorage`.
-    taskManager.save() 
+
+    taskManager.save(); 
     taskManager.render();
   }
-
+  //At the bottom of the function, after our code that handles the "Done" button, create a new if statement to check if the event.target.classList contains the class 'delete-button'.
+  if (event.target.classList.contains("delete-button")) { 
+    //If it does, get the parentTask and store it as a variable.
+    const parentTask =
+      event.target.parentElement.parentElement.parentElement.parentElement;
+    //Get the taskId of the parent task from its data-task-id property - remember, since it's stored as a string in a data attribute, we need to convert it to a number, just like we did for task 8!  
+    const taskID = parseInt(parentTask.dataset.taskId);
+    //Delete the task, passing the taskId to taskManager.deleteTask()
+    taskManager.deleteTask(taskID);
+    //Save the tasks to localStorage using taskManager.save()
+    taskManager.save();
+    //Render the tasks using taskManager.render().
+    taskManager.render();
+  }
 });
 
 
