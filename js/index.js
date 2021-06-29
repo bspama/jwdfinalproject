@@ -27,13 +27,12 @@ taskManager.render();
 const form = document.querySelector("#taskForm");
 
 //Grey out past Due Dates
-const today = new Date().toISOString().split('T')[0];
-document.getElementsByClassName("dueDate")[0].setAttribute('min', today);
+const today = new Date().toISOString().split("T")[0];
+document.getElementsByClassName("dueDate")[0].setAttribute("min", today);
 
 const submitForm = (event) => {
   event.preventDefault();
   let validForm = true;
-
   const newNameInput = document.querySelector("#new-name");
   const newAssignInput = document.querySelector("#new-assign");
   const newDescriptInput = document.querySelector("#new-descript");
@@ -48,7 +47,6 @@ const submitForm = (event) => {
   // console.log("name: " + newNameInput.value);
 
   // check if Task Name is more than 5 characters
-
   if (newNameInput.value.trim() == "" || newNameInput.value.length < 5) {
     taskNameErr.innerHTML = "Length should be more than 5";
     taskNameErr.style.color = "#ff0000";
@@ -61,7 +59,6 @@ const submitForm = (event) => {
   }
 
   // check if Assigned to is more than 5 characters
-
   if (newAssignInput.value.trim() == "" || newAssignInput.value.length < 5) {
     assignedErr.innerHTML = "Length should be more than 5";
     assignedErr.style.color = "#ff0000";
@@ -74,8 +71,10 @@ const submitForm = (event) => {
   }
 
   // check if Description is more than 5 characters
-
-  if (newDescriptInput.value.trim() == "" || newDescriptInput.value.length < 5) {
+  if (
+    newDescriptInput.value.trim() == "" ||
+    newDescriptInput.value.length < 5
+  ) {
     newDescriptErr.innerHTML = "Length should be more than 5";
     newDescriptErr.style.color = "#ff0000";
     validForm = false;
@@ -86,7 +85,6 @@ const submitForm = (event) => {
   }
 
   // check that Due Date is not empty
-
   if (newDueDate.value == "") {
     dueDateErr.innerHTML = "Please enter a Due Date";
     dueDateErr.style.color = "#ff0000";
@@ -97,7 +95,6 @@ const submitForm = (event) => {
   }
 
   // check that Task Status is not empty
-
   if (newStatusInput.value == "Choose...") {
     taskStatusErr.innerHTML = "Please enter a Task Status";
     taskStatusErr.style.color = "#ff0000";
@@ -129,14 +126,13 @@ const submitForm = (event) => {
 
   //Clear all the fields and errors when Reset Button is clicked
   const reset = document.querySelector("#resetBtn");
-  reset.addEventListener("click",() => {
-      taskNameErr.innerHTML = "";
-      assignedErr.innerHTML = "";
-      newDescriptErr.innerHTML = "";
-      dueDateErr.innerHTML = "";
-      taskStatusErr.innerHTML = "";
-  })
-
+  reset.addEventListener("click", () => {
+    taskNameErr.innerHTML = "";
+    assignedErr.innerHTML = "";
+    newDescriptErr.innerHTML = "";
+    dueDateErr.innerHTML = "";
+    taskStatusErr.innerHTML = "";
+  });
 };
 
 //Event Listener for Submit Event (ie Click Add Button) for the Form
@@ -144,29 +140,33 @@ form.addEventListener("submit", submitForm);
 
 const taskList = document.querySelector("#tasks-list");
 
-//Event Listener to check when Mask as Done Button is clicked
+//Event Listener to check when "Mark as Completed" button clicked
 taskList.addEventListener("click", (event) => {
   //Checks whether the target has class called done-button and if it does saves it into the parentTask
-  if (event.target.classList.contains("done-button")) {  
+  if (event.target.classList.contains("done-button")) {
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
     //console.log(parentTask);
     //Get the taskID of the parentTask and converts into integer
     const taskID = parseInt(parentTask.dataset.taskId);
-    //Called the getTaskbyID method and saves it into task variable and changes the status to Done and render the task. 
+    //Called the getTaskbyID method and saves it into task variable,changes the status to Done and renders the task.
     const task = taskManager.getTaskById(taskID);
     task.status = "Done";
-    //In `js/index.js`, after both adding a new task and updating a task's status to done, call `taskManager.save()` to save the tasks to `localSorage`.
 
-    taskManager.save(); 
+    // Call `taskManager.save()` to save the tasks to `localSorage`.
+
+    taskManager.save();
     taskManager.render();
   }
-  //At the bottom of the function, after our code that handles the "Done" button, create a new if statement to check if the event.target.classList contains the class 'delete-button'.
-  if (event.target.classList.contains("delete-button")) { 
+
+  //Deleting tasks
+
+  // Check if the event.target.classList contains the class 'delete-button'.
+  if (event.target.classList.contains("delete-button")) {
     //If it does, get the parentTask and store it as a variable.
     const parentTask =
       event.target.parentElement.parentElement.parentElement.parentElement;
-    //Get the taskId of the parent task from its data-task-id property - remember, since it's stored as a string in a data attribute, we need to convert it to a number, just like we did for task 8!  
+    //Get the taskId of the parent task. Since it's stored as a string in a data attribute, we need to convert it to a number
     const taskID = parseInt(parentTask.dataset.taskId);
     //Delete the task, passing the taskId to taskManager.deleteTask()
     taskManager.deleteTask(taskID);
@@ -176,8 +176,5 @@ taskList.addEventListener("click", (event) => {
     taskManager.render();
   }
 });
-
-
-
 
 // console.log(taskManager.tasks);

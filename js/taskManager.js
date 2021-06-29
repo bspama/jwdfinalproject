@@ -1,12 +1,13 @@
+// Creating the HTML that will be added to our index.html
 const createTaskHtml = (id, name, assignedTo, status, dueDate, description) => {
-
+  //creating HTML for the Done button to be removed when status changed
   let doneButton;
   if (status !== "Done") {
     doneButton = `<button type="button" id="done-button" class="btn btn-secondary done-button">
                         Mark as Done
                       </button>`;
   } else {
-    doneButton = '';
+    doneButton = "";
   }
 
   const html = `
@@ -63,10 +64,9 @@ class TaskManager {
     this.currentID = currentID;
   }
 
+  // Method to add task
   addTask(name, assignedTo, status, dueDate, description) {
     // Within the addTask method, increment the this.currentId
-
-    // create a task using this funtion and push it to the this.tasks Array.
 
     // 1. create a task
     const newTask = {
@@ -78,17 +78,16 @@ class TaskManager {
       description: description,
     };
 
-    // 2. push the task to the this.tasks array with the correct properties of the task.
+    // 2. push the task to the this.tasks array
 
     this.tasks.push(newTask);
     // console.log(this.tasks);
   }
 
-  // Create render method to show tasks list
+  // Method to render task list
 
   render() {
-
-    console.log('render');
+    console.log("render");
 
     // empty tasks html list array
     let tasksHtmlList = [];
@@ -104,9 +103,9 @@ class TaskManager {
         task["assigned to"],
         task.status,
         formattedDate,
-        task.description,
+        task.description
       );
-      // push the new task html to the empty task html list array
+      // push the new task html to the task html list array
       tasksHtmlList.push(taskHtml);
     });
 
@@ -119,9 +118,9 @@ class TaskManager {
   }
 
   getTaskById(taskID) {
-    //create a foundTask variable to store the found task
+    //create a foundTask variable
     let foundTask;
-    //Loops through each tasks in the tasks array and then when a match is found, saves it into the foundTask variable
+    //Loops through each task in the tasks array. When a match is found, saves it into the foundTask variable
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
       if (task.currentID === taskID) {
@@ -140,27 +139,31 @@ class TaskManager {
 
     // return foundTask;
   }
-  // Create a save method to localStorage
- 
-  save() { 
-    //create a JSON string of the tasks using `JSON.stringify()` and store it to a new variable, `tasksJson`
+
+  // Save method to save to localStorage
+
+  save() {
+    // change tasks array to string and store in tasksJason variable
     const tasksJson = JSON.stringify(this.tasks);
-    //Store the JSON string in `localStorage` under the key `tasks` using `localStorage.setItem()`.
-    localStorage.setItem("tasks",tasksJson);
+    // Store the string in localStorage (key:'tasks', value: 'tasksJson')
+    localStorage.setItem("tasks", tasksJson);
     //Convert this.currentID to string
     const currentID = JSON.stringify(this.currentID);
-    // Store the `currentId` variable in `localStorage` under the key `currentId` using `localStorage.setItem()`.
-    localStorage.setItem("currentID",currentID);
+    // Store in localStorage.
+    localStorage.setItem("currentID", currentID);
   }
+
+  //Load method to load from LocalStorage
   load() {
-      //check if any tasks are saved in localStorage with `localStorage.getItem()`.
-    if(localStorage.getItem("tasks")){
+    //check if any tasks are saved in localStorage.
+    if (localStorage.getItem("tasks")) {
       //Get the JSON string of tasks from localStorage and save into tasksJson variable
       const tasksJson = localStorage.getItem("tasks");
-      // Convert the `tasksJson` string to an array using `JSON.parse()` and store it in `this.tasks`
-      this.tasks = JSON.parse(tasksJson) 
+      // Convert to an array using and store it in this.tasks
+      this.tasks = JSON.parse(tasksJson);
     }
-      //Next, check if the `currentId` is saved in localStorage with `localStorage.getItem()`.
+
+    // Check if the currentId is saved in localStorage with
     if (localStorage.getItem("currentID")) {
       //If the `currentId` is stored, get the `currentId` in localStorage using `localStorage.getItem()` and store it in a new variable, `currentId`.
       const currentID = localStorage.getItem("currentID");
@@ -168,22 +171,23 @@ class TaskManager {
       this.currentID = parseInt(currentID);
     }
   }
-  //1. In `js/taskManager.js`, create a `deleteTask` method on the `TaskManager` class. It should take one parameter, `taskId`, the id of the task we want to be deleted.
 
-  deleteTask(taskID){
-    //2. In the `deleteTask` method, create a new variable `newTasks` and set it to an empty array.
+  // Delete task method
+
+  deleteTask(taskID) {
     const newTasks = [];
-    //3. Loop over the tasks, and for each iteration, (1) get current asks and store in a variable task, 
+
+    // Loop over each task, and for each iteration:
+    //(1) get current tasks and store in a variable
     this.tasks.forEach((currentTask) => {
-      const task = currentTask
-      //(2)if task.id is not equal to taskID passed as a parameter, 
+      const task = currentTask;
+      //(2)if task.id is not equal to taskID,
       if (task.currentID != taskID) {
-      //(3)if the task.id is not equal to the taskID  push the task into the newTasks array.
-      newTasks.push(task);
+        //(3)push the task into the newTasks array.
+        newTasks.push(task);
       }
       //4. Set `this.tasks` to `newTasks`.
-      this.tasks = newTasks;  
+      this.tasks = newTasks;
     });
-    
   }
 }
